@@ -55,14 +55,19 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        // 👇 MODIFY THIS LINE
+        configuration.setAllowedOrigins(List.of(
+                "https://alumni-association-platform-git-main-sujeet-s-projects-351108b0.vercel.app", // Your Vercel URL
+                "http://localhost:5173" // Keep your local frontend URL for development if needed
+                // Add other origins like your Vercel production domain if you have one
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type", "X-Requested-With", "Accept", "Origin"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", configuration); // This applies CORS to all paths
         return source;
     }
 
