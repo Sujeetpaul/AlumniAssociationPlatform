@@ -1,4 +1,4 @@
-# Use a slimmer official OpenJDK 21 image as base
+
 FROM openjdk:21-jdk-slim 
 
 
